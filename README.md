@@ -74,11 +74,11 @@ mvn test
 mvn spring-boot:run
 ```
 
-The application will start on `http://localhost:8080`
+The application will start on `http://localhost:8083`
 
 ### Quick Access Links
-- **API Documentation**: http://localhost:8080/swagger-ui.html
-- **H2 Database Console**: http://localhost:8080/h2-console
+- **API Documentation**: http://localhost:8083/swagger-ui.html
+- **H2 Database Console**: http://localhost:8083/h2-console
     - JDBC URL: `jdbc:h2:mem:testdb`
     - Username: `sa`
     - Password: `password`
@@ -87,7 +87,7 @@ The application will start on `http://localhost:8080`
 
 ### Base URL
 ```
-http://localhost:8080/api
+http://localhost:8083/api
 ```
 
 ### Authentication
@@ -364,7 +364,7 @@ CREATE TABLE transactions (
 1. **Create a new environment** in Postman named "Mobile Banking API"
 
 2. **Add environment variables:**
-    - `baseUrl`: `http://localhost:8080/api`
+    - `baseUrl`: `http://localhost:8083/api`
     - `userId`: (will be set dynamically)
     - `accountId`: (will be set dynamically)
     - `transactionId`: (will be set dynamically)
@@ -971,7 +971,7 @@ logging:
     org.springframework.security: WARN
 
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8083}
   ssl:
     enabled: true
     key-store: classpath:keystore.p12
@@ -986,7 +986,7 @@ WORKDIR /app
 
 COPY target/mobile-banking-api-1.0.0.jar app.jar
 
-EXPOSE 8080
+EXPOSE 8083
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
@@ -1042,10 +1042,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 For support and questions:
 - Create an issue in the GitHub repository
 - Email: support@bankingapi.com
-- Documentation: [API Documentation](http://localhost:8080/swagger-ui.html)
+- Documentation: [API Documentation](http://localhost:8083/swagger-ui.html)
 
 ---
 
 **Version**: 1.0.0  
 **Last Updated**: January 2024  
-**Maintained by**: Banking API Team
+**Maintained by**: Banking API Team (Shady)
