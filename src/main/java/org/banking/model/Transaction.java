@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transactions")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +22,14 @@ public class Transaction {
     private String transactionReference;
 
     @NotNull(message = "From account is required")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)  // Changed to EAGER
     @JoinColumn(name = "from_account_id")
+    @JsonIgnoreProperties({"outgoingTransactions", "incomingTransactions", "user"})
     private Account fromAccount;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)  // Changed to EAGER
     @JoinColumn(name = "to_account_id")
+    @JsonIgnoreProperties({"outgoingTransactions", "incomingTransactions", "user"})
     private Account toAccount;
 
     @NotNull(message = "Amount is required")
@@ -60,8 +64,7 @@ public class Transaction {
     }
 
     // Constructors
-    public Transaction() {
-    }
+    public Transaction() {}
 
     public Transaction(String transactionReference, Account fromAccount, Account toAccount,
                        BigDecimal amount, TransactionType transactionType, String description) {
@@ -74,91 +77,36 @@ public class Transaction {
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getTransactionReference() { return transactionReference; }
+    public void setTransactionReference(String transactionReference) { this.transactionReference = transactionReference; }
 
-    public String getTransactionReference() {
-        return transactionReference;
-    }
+    public Account getFromAccount() { return fromAccount; }
+    public void setFromAccount(Account fromAccount) { this.fromAccount = fromAccount; }
 
-    public void setTransactionReference(String transactionReference) {
-        this.transactionReference = transactionReference;
-    }
+    public Account getToAccount() { return toAccount; }
+    public void setToAccount(Account toAccount) { this.toAccount = toAccount; }
 
-    public Account getFromAccount() {
-        return fromAccount;
-    }
+    public BigDecimal getAmount() { return amount; }
+    public void setAmount(BigDecimal amount) { this.amount = amount; }
 
-    public void setFromAccount(Account fromAccount) {
-        this.fromAccount = fromAccount;
-    }
+    public TransactionType getTransactionType() { return transactionType; }
+    public void setTransactionType(TransactionType transactionType) { this.transactionType = transactionType; }
 
-    public Account getToAccount() {
-        return toAccount;
-    }
+    public TransactionStatus getStatus() { return status; }
+    public void setStatus(TransactionStatus status) { this.status = status; }
 
-    public void setToAccount(Account toAccount) {
-        this.toAccount = toAccount;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+    public BigDecimal getFee() { return fee; }
+    public void setFee(BigDecimal fee) { this.fee = fee; }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public TransactionType getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(TransactionType transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public TransactionStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TransactionStatus status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getFee() {
-        return fee;
-    }
-
-    public void setFee(BigDecimal fee) {
-        this.fee = fee;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getProcessedAt() {
-        return processedAt;
-    }
-
-    public void setProcessedAt(LocalDateTime processedAt) {
-        this.processedAt = processedAt;
-    }
+    public LocalDateTime getProcessedAt() { return processedAt; }
+    public void setProcessedAt(LocalDateTime processedAt) { this.processedAt = processedAt; }
 }

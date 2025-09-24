@@ -55,8 +55,8 @@ A comprehensive Spring Boot REST API for mobile banking applications with full C
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/mobile-banking-api.git
-cd mobile-banking-api
+git https://github.com/Shady1997/-Mobile_Bank_API_RestFul.git
+cd -Mobile_Bank_API_RestFul
 ```
 
 2. **Build the project**
@@ -77,7 +77,7 @@ mvn spring-boot:run
 The application will start on `http://localhost:8083`
 
 ### Quick Access Links
-- **API Documentation**: http://localhost:8083/swagger-ui.html
+- **API Documentation**: http://localhost:8083/swagger-ui/index.html
 - **H2 Database Console**: http://localhost:8083/h2-console
     - JDBC URL: `jdbc:h2:mem:testdb`
     - Username: `sa`
@@ -1042,7 +1042,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 For support and questions:
 - Create an issue in the GitHub repository
 - Email: support@bankingapi.com
-- Documentation: [API Documentation](http://localhost:8083/swagger-ui.html)
+- Documentation: [API Documentation](http://localhost:8083/swagger-ui/index.html)
 
 ---
 

@@ -34,11 +34,20 @@ management:
 
 springdoc:
   api-docs:
+    enabled: true
     path: /v3/api-docs
   swagger-ui:
+    enabled: true
     path: /swagger-ui.html
+    operationsSorter: method
+    disable-swagger-default-url: true
+    display-request-duration: true
+    tags-sorter: alpha
+    packages-to-scan: com.banking.controller
+    paths-to-match: /api/**
 
 logging:
-  level:
-    com.banking: DEBUG
-    org.springframework.security: DEBUG
+  logging:
+    level:
+      org.springdoc: DEBUG
+      io.swagger: DEBUG
