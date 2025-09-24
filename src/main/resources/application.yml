@@ -6,7 +6,12 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password: password
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+    default-property-inclusion: non_null
   jpa:
+    open-in-view: false
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop

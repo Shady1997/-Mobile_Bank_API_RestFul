@@ -1,5 +1,7 @@
 package org.banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "accounts")
 public class Account {
     @Id
@@ -23,8 +26,9 @@ public class Account {
     private String accountNumber;
 
     @NotNull(message = "User ID is required")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"accounts", "password"})
     private User user;
 
     @Enumerated(EnumType.STRING)
@@ -49,9 +53,11 @@ public class Account {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "fromAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Transaction> outgoingTransactions;
 
     @OneToMany(mappedBy = "toAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Transaction> incomingTransactions;
 
     public enum AccountType {
