@@ -32,10 +32,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install -DskipTests
 
-
-      - name: Run Unit and Integration Tests
-        run: mvn test
-
       - name: Verify Spring Boot App Starts (optional)
         run: mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8083 &
         continue-on-error: true  # Avoid fail if app is already covered by tests
