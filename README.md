@@ -1,5 +1,7 @@
 # Mobile Banking REST API
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A comprehensive Spring Boot REST API for mobile banking applications with full CRUD operations, transaction management, and comprehensive testing suite.
 
 ## Table of Contents
