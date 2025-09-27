@@ -1,42 +1,40 @@
-name: 🚀 Build & Deploy Spring Boot to Docker Hub
+name: CI - Spring Boot API
 
 on:
   push:
-    branches:
-      - master  # or 'master', depending on your setup
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  build-and-deploy:
+  build-test:
+    name: Build & Test
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔍 Checkout source code
-        uses: actions/checkout@v3
+      - name: Checkout source code
+        uses: actions/checkout@v4
 
-      - name: ☕ Set up JDK 17
-        uses: actions/setup-java@v3
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
         with:
+          distribution: 'temurin'  # Use 'zulu' or 'adopt' if you prefer
           java-version: '17'
-          distribution: 'temurin'
 
-      - name: 🛠️ Build with Maven
-        run: ./mvnw clean package -DskipTests
-
-      - name: 🐳 Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: 🔐 Login to Docker Hub
-        uses: docker/login-action@v3
+      - name: Cache Maven packages
+        uses: actions/cache@v4
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
-      - name: 📦 Build and Push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/spring-crud-api:latest
+      - name: Build with Maven
+        run: mvn -B clean install
 
-      - name: ✅ Done!
-        run: echo "Image pushed to Docker Hub!"
+      - name: Run Unit and Integration Tests
+        run: mvn test
+
+      - name: Verify Spring Boot App Starts (optional)
+        run: mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8083 &
+        continue-on-error: true  # Avoid fail if app is already covered by tests
