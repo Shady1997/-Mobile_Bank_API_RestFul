@@ -1,3 +1,9 @@
+/*
+ * Author: Shady Ahmed
+ * Date: 2025-09-27
+ * Project: Mobile Banking API
+ * My Linked-in: https://www.linkedin.com/in/shady-ahmed97/.
+ */
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;

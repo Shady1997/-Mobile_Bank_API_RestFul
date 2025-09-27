@@ -1,8 +1,13 @@
+/*
+ * Author: Shady Ahmed
+ * Date: 2025-09-27
+ * Project: Mobile Banking API
+ * My Linked-in: https://www.linkedin.com/in/shady-ahmed97/.
+ */
 package org.banking.service;
 
 import org.banking.dto.AccountDto;
 import org.banking.exception.ResourceNotFoundException;
-import org.banking.exception.DuplicateResourceException;
 import org.banking.model.Account;
 import org.banking.model.User;
 import org.banking.repository.AccountRepository;

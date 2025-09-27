@@ -1,10 +1,15 @@
+/*
+ * Author: Shady Ahmed
+ * Date: 2025-09-27
+ * Project: Mobile Banking API
+ * My Linked-in: https://www.linkedin.com/in/shady-ahmed97/.
+ */
 package org.banking.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

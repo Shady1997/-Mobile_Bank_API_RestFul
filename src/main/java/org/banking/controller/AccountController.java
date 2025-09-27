@@ -1,3 +1,9 @@
+/*
+ * Author: Shady Ahmed
+ * Date: 2025-09-27
+ * Project: Mobile Banking API
+ * My Linked-in: https://www.linkedin.com/in/shady-ahmed97/.
+ */
 package org.banking.controller;
 
 import org.banking.dto.AccountDto;
@@ -10,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 

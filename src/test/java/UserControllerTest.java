@@ -1,3 +1,9 @@
+/*
+ * Author: Shady Ahmed
+ * Date: 2025-09-27
+ * Project: Mobile Banking API
+ * My Linked-in: https://www.linkedin.com/in/shady-ahmed97/.
+ */
 import org.banking.controller.UserController;
 import org.banking.dto.UserDto;
 import org.banking.model.User;
