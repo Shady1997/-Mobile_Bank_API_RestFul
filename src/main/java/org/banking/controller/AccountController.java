@@ -21,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/accounts")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173"})
 @Tag(name = "Account Management", description = "APIs for managing bank accounts")
 public class AccountController {
 
