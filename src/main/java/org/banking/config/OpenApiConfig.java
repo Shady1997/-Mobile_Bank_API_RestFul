@@ -22,12 +22,12 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         Info apiInfo = new Info()
-                .title("Mobile Banking API")
+                .title("Mobile Banking API by Shady Ahmed")
                 .description("Comprehensive REST API for mobile banking: CRUD, transactions, account management.")
                 .version("1.0.0")
                 .contact(new Contact()
                         .name("Banking API Team")
-                        .email("support@bankingapi.com")
+                        .email("shadyahmed971997@gmail.com")
                         .url("https://github.com/Shady1997/-Mobile_Bank_API_RestFul.git"))
                 .license(new License()
                         .name("MIT License")
